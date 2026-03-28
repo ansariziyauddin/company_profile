@@ -1,0 +1,340 @@
+================================================================================
+         MASTER PROMPT — Architecture-First Engineering Portfolio
+                        React + Vite | Single Page App
+================================================================================
+
+You are an expert React + Vite frontend developer and UI/UX designer. Build a
+single-page company portfolio website with clean architecture, vibrant
+creative-agency energy, and production-grade code quality.
+
+--------------------------------------------------------------------------------
+  COMPANY IDENTITY
+--------------------------------------------------------------------------------
+
+Name        : Architecture-First Engineering
+Tagline     : Engineering Scalable Digital Systems
+Sub-tagline : We build high-performance mobile and web architectures for
+              startups and growing businesses. Systems that scale.
+
+--------------------------------------------------------------------------------
+  VISUAL STYLE
+--------------------------------------------------------------------------------
+
+Theme       : Colorful & energetic creative agency — bold, alive, memorable
+
+Color Palette:
+  - Base        : Deep navy/charcoal (#0D0F1A)
+  - Accent 1    : Vivid coral (#FF4D6D)
+  - Accent 2    : Electric cyan (#00F5D4)
+  - Accent 3    : Amber (#FFB703)
+  - Text        : White on dark backgrounds
+
+Typography:
+  - Display/Headings : "Syne" (Google Fonts) — geometric, bold, modern
+  - Body             : "DM Sans" — clean and readable
+
+Backgrounds:
+  - Animated gradient mesh or subtle noise texture on hero section
+  - Glassmorphism cards (backdrop-filter: blur) with colored border glows
+    for project cards
+
+Animations:
+  - Smooth fade-up on scroll for all sections (use IntersectionObserver)
+  - Gradient text animation on hero headline
+  - Hover effects on project cards: lift + glow + scale
+  - Floating blobs / orbs in hero background (CSS keyframes)
+  - Staggered entrance animations on section load
+
+Layout:
+  - Full-width sections
+  - Generous spacing
+  - Asymmetric grids for projects
+  - Bold section titles with accent underlines
+
+--------------------------------------------------------------------------------
+  PROJECT STRUCTURE (Clean Architecture)
+--------------------------------------------------------------------------------
+
+src/
+├── assets/
+│   └── mobile/                  # Mobile app screenshot images go here
+├── components/
+│   ├── ui/                      # Reusable atoms
+│   │   ├── Button.jsx
+│   │   ├── Button.module.css
+│   │   ├── Badge.jsx
+│   │   ├── Badge.module.css
+│   │   ├── ProjectCard.jsx
+│   │   ├── ProjectCard.module.css
+│   │   ├── MobileCard.jsx
+│   │   └── MobileCard.module.css
+│   └── layout/                  # Navbar, Footer
+│       ├── Navbar.jsx
+│       ├── Navbar.module.css
+│       ├── Footer.jsx
+│       └── Footer.module.css
+├── sections/                    # Section-level components
+│   ├── Hero.jsx
+│   ├── Hero.module.css
+│   ├── About.jsx
+│   ├── About.module.css
+│   ├── WebProjects.jsx
+│   ├── WebProjects.module.css
+│   ├── MobileProjects.jsx
+│   ├── MobileProjects.module.css
+│   ├── Contact.jsx
+│   └── Contact.module.css
+├── data/
+│   └── projects.js              # All project data
+├── hooks/
+│   └── useScrollReveal.js       # IntersectionObserver scroll hook
+├── styles/
+│   └── globals.css              # CSS variables, resets, utility classes
+├── App.jsx
+└── main.jsx
+
+--------------------------------------------------------------------------------
+  SECTIONS (Single Page, Scroll-based)
+--------------------------------------------------------------------------------
+
+1. NAVBAR
+   - Logo: "AFE" monogram + "Architecture-First" wordmark
+   - Nav links: About · Projects · Mobile · Contact
+   - Sticky with blur backdrop on scroll
+   - CTA button: "Let's Build" → scrolls to contact section
+
+2. HERO SECTION
+   - Animated floating blobs in background (coral, cyan, amber)
+   - Large bold headline with gradient text animation:
+     "Engineering Scalable Digital Systems"
+   - Sub-headline:
+     "We build high-performance mobile and web architectures for startups
+      and growing businesses. Systems that scale."
+   - Two CTAs:
+       · "View Our Work" (primary filled button)
+       · "Get In Touch" (outlined button)
+   - Subtle scroll indicator arrow at bottom
+
+3. ABOUT / INTRO SECTION
+   - 2-column layout:
+       Left  → Bold statement text
+       Right → 3 stat cards
+   - Stats:
+       · "4+ Web Projects"
+       · "Mobile Apps"
+       · "Scalable Architectures"
+   - Tech pill tags:
+     React · Node.js · Flutter · React Native · REST APIs · Clean Architecture
+   - Power sentence:
+     "We don't just write code — we design systems that grow with your business."
+
+4. WEB PROJECTS SECTION
+   - Section title: "Web Experiences"
+   - Asymmetric 2-column grid of project cards
+   - Each card includes:
+       · Live screenshot preview via Microlink API:
+         https://api.microlink.io/?url=PROJECT_URL&screenshot=true&meta=false&embed=screenshot.url
+       · Project name (bold)
+       · Short description (1–2 lines)
+       · Tech tags (pill badges)
+       · "View Live →" button — opens link in new tab
+
+   Projects Data:
+   ┌─────────────────────────────────────────────────────────────────────────┐
+   │ 1. Fashion World                                                        │
+   │    Description : A modern e-commerce fashion platform with elegant      │
+   │                  product browsing, cart management, and seamless        │
+   │                  checkout flow.                                         │
+   │    Tags        : React, E-Commerce, UI/UX                              │
+   │    Link        : https://grace-adorn-shop.onrender.com/                │
+   ├─────────────────────────────────────────────────────────────────────────┤
+   │ 2. Khidmat                                                              │
+   │    Description : A service marketplace platform connecting customers    │
+   │                  with trusted local service providers.                  │
+   │    Tags        : React, Node.js, Full Stack                            │
+   │    Link        : https://khidmat-frontend-backend.onrender.com/        │
+   ├─────────────────────────────────────────────────────────────────────────┤
+   │ 3. E-Commerce Platform                                                  │
+   │    Description : A scalable multi-product e-commerce system with admin  │
+   │                  dashboard and order management.                        │
+   │    Tags        : React, Redux, REST API                                │
+   │    Link        : https://e-commerce-plhj.onrender.com/                │
+   ├─────────────────────────────────────────────────────────────────────────┤
+   │ 4. Portfolio + Todo Manager                                             │
+   │    Description : A combined personal portfolio and productivity app     │
+   │                  showcasing seamless UX with integrated task management.│
+   │    Tags        : React, Firebase, SPA                                  │
+   │    Link        : https://portfolio-todo-combo-mi4g.onrender.com/#/     │
+   └─────────────────────────────────────────────────────────────────────────┘
+
+5. MOBILE PROJECTS SECTION
+   - Section title: "Mobile Experiences"
+   - Phone mockup grid layout:
+       · 3 columns on desktop
+       · 2 columns on tablet
+       · 1 column on mobile
+   - Each mobile project card shows:
+       · Portrait phone frame (CSS-drawn or SVG border) with image inside
+       · Project title
+       · Short description
+       · Tech tags (React Native / Flutter)
+   - Images imported from: src/assets/mobile/ folder
+   - If no image: show "Coming Soon" card with gradient shimmer placeholder
+
+6. CONTACT SECTION
+   - Section title: "Let's Build Something Great"
+   - Sub-text:
+     "Have a project in mind? Reach out and let's architect your next big thing."
+   - 3 glassmorphism contact cards (side by side, colored glow on hover):
+
+     ┌──────────────────────────────────────────────────────────────────────┐
+     │  WhatsApp Card  (coral glow)                                         │
+     │  Icon + "Chat with us"                                               │
+     │  Button → https://wa.me/YOUR_WHATSAPP_NUMBER                        │
+     ├──────────────────────────────────────────────────────────────────────┤
+     │  LinkedIn Card  (cyan glow)                                          │
+     │  Icon + "Connect professionally"                                     │
+     │  Button → YOUR_LINKEDIN_PROFILE_URL                                 │
+     ├──────────────────────────────────────────────────────────────────────┤
+     │  Email Card     (amber glow)                                         │
+     │  Icon + "Drop us a line"                                             │
+     │  Button → mailto:YOUR_EMAIL_ADDRESS                                 │
+     └──────────────────────────────────────────────────────────────────────┘
+
+7. FOOTER
+   - Text: "© 2025 Architecture-First Engineering. Systems that scale."
+   - Minimal, centered, dark background
+
+--------------------------------------------------------------------------------
+  TECHNICAL REQUIREMENTS
+--------------------------------------------------------------------------------
+
+Stack       : React 18 + Vite 5
+Styling     : Pure CSS with CSS custom properties (CSS Modules per component)
+              NO Tailwind, NO MUI, NO styled-components
+Fonts       : Google Fonts CDN — Syne (700, 800) + DM Sans (400, 500)
+Icons       : lucide-react for contact and nav icons
+Scroll      : Native IntersectionObserver via useScrollReveal.js hook
+              (no GSAP, no framer-motion dependency)
+Routing     : None — single page, anchor-link navigation only
+Images      : Static imports from assets folder
+              Web previews via Microlink API
+Performance : Lazy load all images with loading="lazy"
+Responsive  : Mobile-first, breakpoints at 768px and 1024px
+Accessibility: Semantic HTML, aria-labels on icon buttons, keyboard-navigable
+
+--------------------------------------------------------------------------------
+  DATA FILE — src/data/projects.js
+--------------------------------------------------------------------------------
+
+export const webProjects = [
+  {
+    id: 1,
+    title: "Fashion World",
+    description: "A modern e-commerce fashion platform with elegant product
+                  browsing, cart management, and seamless checkout flow.",
+    tags: ["React", "E-Commerce", "UI/UX"],
+    link: "https://grace-adorn-shop.onrender.com/",
+    type: "web"
+  },
+  {
+    id: 2,
+    title: "Khidmat",
+    description: "A service marketplace platform connecting customers with
+                  trusted local service providers.",
+    tags: ["React", "Node.js", "Full Stack"],
+    link: "https://khidmat-frontend-backend.onrender.com/",
+    type: "web"
+  },
+  {
+    id: 3,
+    title: "E-Commerce Platform",
+    description: "A scalable multi-product e-commerce system with admin
+                  dashboard and order management.",
+    tags: ["React", "Redux", "REST API"],
+    link: "https://e-commerce-plhj.onrender.com/",
+    type: "web"
+  },
+  {
+    id: 4,
+    title: "Portfolio + Todo Manager",
+    description: "A combined personal portfolio and productivity app
+                  showcasing seamless UX with integrated task management.",
+    tags: ["React", "Firebase", "SPA"],
+    link: "https://portfolio-todo-combo-mi4g.onrender.com/#/",
+    type: "web"
+  }
+];
+
+export const mobileProjects = [
+  // Add mobile projects here with image imports from src/assets/mobile/
+  // Example:
+  // {
+  //   id: 1,
+  //   title: "App Name",
+  //   description: "Short description of the mobile app.",
+  //   tags: ["React Native", "Firebase"],
+  //   image: mobileAppImage,   // imported at top of file
+  //   type: "mobile"
+  // }
+];
+
+--------------------------------------------------------------------------------
+  DELIVERABLES — Generate ALL files completely (no truncation)
+--------------------------------------------------------------------------------
+
+ 1.  index.html                                   (with Google Fonts link)
+ 2.  src/styles/globals.css                       (CSS variables + resets)
+ 3.  src/data/projects.js                         (all project data)
+ 4.  src/hooks/useScrollReveal.js                 (IntersectionObserver hook)
+ 5.  src/components/ui/Button.jsx
+ 6.  src/components/ui/Button.module.css
+ 7.  src/components/ui/Badge.jsx
+ 8.  src/components/ui/Badge.module.css
+ 9.  src/components/ui/ProjectCard.jsx
+10.  src/components/ui/ProjectCard.module.css
+11.  src/components/ui/MobileCard.jsx
+12.  src/components/ui/MobileCard.module.css
+13.  src/components/layout/Navbar.jsx
+14.  src/components/layout/Navbar.module.css
+15.  src/components/layout/Footer.jsx
+16.  src/components/layout/Footer.module.css
+17.  src/components/sections/Hero.jsx
+18.  src/components/sections/Hero.module.css
+19.  src/components/sections/About.jsx
+20.  src/components/sections/About.module.css
+21.  src/components/sections/WebProjects.jsx
+22.  src/components/sections/WebProjects.module.css
+23.  src/components/sections/MobileProjects.jsx
+24.  src/components/sections/MobileProjects.module.css
+25.  src/components/sections/Contact.jsx
+26.  src/components/sections/Contact.module.css
+27.  src/App.jsx
+28.  src/main.jsx
+29.  vite.config.js
+30.  package.json
+
+Generate each file fully — no truncation, no placeholders, complete working code.
+
+--------------------------------------------------------------------------------
+  BEFORE YOU USE THIS PROMPT — Replace These Placeholders
+--------------------------------------------------------------------------------
+
+  YOUR_WHATSAPP_NUMBER   →  WhatsApp number with country code (e.g. 919876543210)
+  YOUR_LINKEDIN_PROFILE_URL  →  Full LinkedIn profile or company page URL
+  YOUR_EMAIL_ADDRESS     →  Contact email address
+
+  After generating, drop mobile app screenshots into:
+    src/assets/mobile/
+  Then add entries to the mobileProjects array in src/data/projects.js
+
+--------------------------------------------------------------------------------
+  SETUP COMMANDS (after files are generated)
+--------------------------------------------------------------------------------
+
+  npm install
+  npm run dev
+
+================================================================================
+  © 2025 Architecture-First Engineering. Systems that scale.
+================================================================================
