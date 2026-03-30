@@ -8,7 +8,7 @@ import { BottomCTA } from '@/components/sections/BottomCTA';
 export const metadata = {
   title: 'About',
   description:
-    'Learn about Inovance Technologies — 14+ years of engineering excellence, multi-tech capability, and a startup mindset focused on building scalable digital systems.',
+    'Learn about Innovance Tech AI — 14+ years of engineering excellence, multi-tech capability, and a startup mindset focused on building scalable digital systems.',
 };
 
 export default function AboutPage() {

@@ -12,11 +12,11 @@ const inter = Inter({
 
 export const metadata = {
   title: {
-    default: 'Inovance Technologies — Engineering Scalable Digital Systems',
-    template: '%s | Inovance Technologies',
+    default: 'Innovance Tech AI — Engineering Scalable Digital Systems',
+    template: '%s | Innovance Tech AI',
   },
   description:
-    'Inovance Technologies — Engineering scalable digital systems. We build high-performance mobile and web architectures for startups and growing businesses with 14+ years of experience.',
+    'Innovance Tech AI — Engineering scalable digital systems. We build high-performance mobile and web architectures for startups and growing businesses with 14+ years of experience.',
   keywords: [
     'software development',
     'web applications',
@@ -25,20 +25,20 @@ export const metadata = {
     'Flutter',
     'Node.js',
     'scalable systems',
-    'Inovance Technologies',
+    'Innovance Tech AI',
   ],
-  authors: [{ name: 'Inovance Technologies' }],
+  authors: [{ name: 'Innovance Tech AI' }],
   openGraph: {
     type: 'website',
-    title: 'Inovance Technologies — Engineering Scalable Digital Systems',
+    title: 'Innovance Tech AI — Engineering Scalable Digital Systems',
     description:
       'We build high-performance mobile and web architectures for startups and growing businesses. 14+ years of engineering excellence.',
     url: 'https://inovancetech.com/',
-    siteName: 'Inovance Technologies',
+    siteName: 'Innovance Tech AI',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Inovance Technologies — Engineering Scalable Digital Systems',
+    title: 'Innovance Tech AI — Engineering Scalable Digital Systems',
     description:
       'We build high-performance mobile and web architectures for startups and growing businesses. 14+ years of engineering excellence.',
   },

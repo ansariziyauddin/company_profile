@@ -34,7 +34,7 @@ export function Hero() {
           >
             Engineering Scalable{' '}
             <span className="text-accent3">
-              Digital Systems
+              AI & Digital Systems
             </span>
           </motion.h1>
 
@@ -45,7 +45,7 @@ export function Hero() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.45 }}
           >
-            We build high-performance mobile and web architectures for startups
+            We build high-performance AI-powered digital products, mobile, and web architectures for startups
             and growing businesses. Systems that scale, solutions that last.
           </motion.p>
 

@@ -5,7 +5,7 @@ import { ContactForm } from '@/components/sections/ContactForm';
 export const metadata = {
   title: 'Contact',
   description:
-    'Get in touch with Inovance Technologies. Reach out via WhatsApp, LinkedIn, or email to discuss your next project.',
+    'Get in touch with Innovance Tech AI. Reach out via WhatsApp, LinkedIn, or email to discuss your next project.',
 };
 
 export default function ContactPage() {

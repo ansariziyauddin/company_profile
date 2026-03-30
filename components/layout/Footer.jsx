@@ -47,7 +47,7 @@ export function Footer() {
                              flex items-center justify-center text-white font-bold text-sm">
                 IT
               </span>
-              <span className="font-semibold text-lg">Inovance Technologies</span>
+              <span className="font-semibold text-lg">Innovance Tech AI</span>
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
               Engineering scalable digital systems for startups and growing businesses.
@@ -117,7 +117,7 @@ export function Footer() {
         <div className="border-t border-white/8 py-6 flex flex-col sm:flex-row
                        items-center justify-between gap-4">
           <p className="text-xs text-white/30">
-            © {new Date().getFullYear()} Inovance Technologies. All rights reserved.
+            © {new Date().getFullYear()} Innovance Tech AI. All rights reserved.
           </p>
           <p className="text-xs text-white/30 flex items-center gap-1">
             Crafted with <Heart size={12} className="text-accent3 fill-accent3" /> and clean code

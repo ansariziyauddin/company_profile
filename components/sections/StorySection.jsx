@@ -25,7 +25,7 @@ export function StorySection() {
               <div className="space-y-4 text-text-muted leading-relaxed">
                 <p>
                   With <strong className="text-text-dark">14+ years in the IT industry</strong>,
-                  Inovance Technologies designs, builds, and supports digital solutions
+                  Innovance Tech AI designs, builds, and supports digital solutions
                   that are reliable, secure, and scalable — from early-stage startups
                   to established enterprises.
                 </p>

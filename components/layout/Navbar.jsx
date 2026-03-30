@@ -19,7 +19,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > 20);
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     handleScroll();
@@ -47,10 +47,8 @@ export function Navbar() {
   return (
     <>
       <motion.nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? 'bg-white border-b border-gray-200'
-            : 'bg-transparent'
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md border-b ${
+          scrolled ? 'border-gray-200 shadow-sm py-0' : 'border-transparent py-1'
         }`}
         initial={{ y: -100 }}
         animate={{ y: 0 }}
@@ -64,13 +62,12 @@ export function Navbar() {
             id="nav-logo"
           >
             <span
-              className="w-10 h-10 rounded-xl bg-accent1 flex items-center justify-center text-white font-bold text-sm transition-colors duration-300"
+              className="w-10 h-10 rounded-xl bg-accent1 flex items-center justify-center text-white font-bold text-sm transition-transform duration-300 group-hover:scale-105"
             >
               IT
             </span>
-            <span className={`font-semibold text-base hidden sm:block transition-colors duration-300
-                             ${scrolled ? 'text-text-dark group-hover:text-accent1' : 'text-white/90 group-hover:text-white'}`}>
-              Inovance Technologies
+            <span className="font-semibold text-base hidden sm:block transition-colors duration-300 text-text-dark group-hover:text-accent1">
+              Innovance Tech AI
             </span>
           </Link>
 
@@ -84,14 +81,14 @@ export function Navbar() {
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg
                            transition-all duration-300 ${
                   pathname === link.href
-                    ? (scrolled ? 'text-accent1 bg-accent1/5' : 'text-white bg-white/10')
-                    : (scrolled ? 'text-text-muted hover:text-text-dark hover:bg-accent1/5' : 'text-white/70 hover:text-white hover:bg-white/10')
+                    ? 'text-accent1 bg-accent1/5'
+                    : 'text-text-muted hover:text-text-dark hover:bg-gray-50'
                 }`}
               >
                 {link.label}
                 {pathname === link.href && (
                   <motion.div
-                    className={`absolute bottom-0 left-3 right-3 h-0.5 rounded-full ${scrolled ? 'bg-accent1' : 'bg-white'}`}
+                    className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-accent1"
                     layoutId="activeNav"
                     transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                   />
@@ -104,18 +101,16 @@ export function Navbar() {
           <Link
             href="/contact"
             id="nav-cta"
-            className={`hidden md:inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-xl
-                       transition-all duration-300 ${
-                       scrolled ? 'text-white bg-accent1 hover:bg-accent2' : 'text-accent1 bg-white hover:bg-gray-50'}`}
+            className="hidden md:inline-flex items-center px-5 py-2.5 text-sm font-semibold rounded-xl
+                       transition-all duration-300 text-white bg-accent1 hover:bg-accent2 shadow-sm hover:shadow-md"
           >
             Let&apos;s Build
           </Link>
 
           {/* Mobile Hamburger */}
           <button
-            className={`md:hidden relative w-10 h-10 flex items-center justify-center
-                       rounded-xl transition-colors ${
-                       scrolled ? 'hover:bg-accent1/5 text-text-dark' : 'hover:bg-white/10 text-white'}`}
+            className="md:hidden relative w-10 h-10 flex items-center justify-center
+                       rounded-xl transition-colors hover:bg-gray-100 text-text-dark"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle navigation menu"
             aria-expanded={menuOpen}
@@ -157,7 +152,7 @@ export function Navbar() {
               <div className="flex justify-end p-5">
                 <button
                   className="w-10 h-10 rounded-xl flex items-center justify-center
-                             hover:bg-accent1/5 transition-colors"
+                             hover:bg-gray-100 transition-colors"
                   onClick={() => setMenuOpen(false)}
                 >
                   <X size={22} className="text-text-dark" />
@@ -179,7 +174,7 @@ export function Navbar() {
                                  transition-all duration-200 ${
                         pathname === link.href
                           ? 'text-accent1 bg-accent1/8 font-semibold'
-                          : 'text-text-dark hover:bg-accent1/5 hover:text-accent1'
+                          : 'text-text-dark hover:bg-gray-50 hover:text-accent1'
                       }`}
                     >
                       {link.label}

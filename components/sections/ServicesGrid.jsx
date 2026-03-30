@@ -3,10 +3,16 @@
 import { motion } from 'framer-motion';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import {
-  Laptop, Code, Rocket, RefreshCw, Link2, Wrench
+  Laptop, Code, Rocket, RefreshCw, Link2, Wrench, BrainCircuit
 } from 'lucide-react';
 
 const SERVICES = [
+  {
+    icon: BrainCircuit,
+    title: 'AI Solutions',
+    description: 'Integrating predictive analytics, generative AI, and intelligent automation to supercharge your digital products.',
+    gradient: 'from-fuchsia-500/10 to-purple-500/10',
+  },
   {
     icon: Laptop,
     title: 'Web & Mobile',
