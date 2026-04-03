@@ -5,6 +5,13 @@ import Link from 'next/link';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 
+export async function generateStaticParams() {
+  const allProjects = [...webProjects, ...mobileProjects];
+  return allProjects.map((project) => ({
+    id: project.id.toString(),
+  }));
+}
+
 export async function generateMetadata({ params }) {
   const allProjects = [...webProjects, ...mobileProjects];
   const project = allProjects.find(p => p.id.toString() === params.id);
