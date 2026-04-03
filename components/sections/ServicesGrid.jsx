@@ -53,7 +53,7 @@ const SERVICES = [
 
 export function ServicesGrid() {
   return (
-    <section className="section-padding bg-white/40">
+    <section className="pt-8 pb-20 md:pt-12 md:pb-24 bg-white/40">
       <div className="container-main">
         <SectionHeading
           title="What We Do"

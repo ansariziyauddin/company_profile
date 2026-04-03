@@ -6,7 +6,7 @@ import { ArrowRight } from 'lucide-react';
 
 export function BottomCTA() {
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden">
+    <section className="pt-8 pb-24 md:pt-12 md:pb-32 relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent1/[0.03] to-transparent" />
 

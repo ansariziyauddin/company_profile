@@ -51,7 +51,7 @@ export function Footer() {
             </div>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs">
               Engineering scalable digital systems for startups and growing businesses.
-              14+ years of experience building what matters.
+
             </p>
           </div>
 

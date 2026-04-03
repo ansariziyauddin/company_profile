@@ -8,6 +8,7 @@ import { Menu, X } from 'lucide-react';
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
+  { href: '/#projects', label: 'Our Work' },
   { href: '/about', label: 'About' },
   { href: '/contact', label: 'Contact' },
 ];
@@ -15,7 +16,14 @@ const NAV_LINKS = [
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [activeHash, setActiveHash] = useState('');
   const pathname = usePathname();
+
+  const isLinkActive = (href) => {
+    if (href === '/') return pathname === '/' && activeHash === '';
+    if (href.includes('#')) return pathname === '/' && activeHash === '#' + href.split('#')[1];
+    return pathname === href;
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -42,7 +50,14 @@ export function Navbar() {
   // Close mobile menu on route change
   useEffect(() => {
     setMenuOpen(false);
+    setActiveHash(window.location.hash);
   }, [pathname]);
+
+  useEffect(() => {
+    const handleHash = () => setActiveHash(window.location.hash);
+    window.addEventListener('hashchange', handleHash);
+    return () => window.removeEventListener('hashchange', handleHash);
+  }, []);
 
   return (
     <>
@@ -80,13 +95,20 @@ export function Navbar() {
                 id={`nav-${link.label.toLowerCase()}`}
                 className={`relative px-4 py-2 text-sm font-medium rounded-lg
                            transition-all duration-300 ${
-                  pathname === link.href
+                  isLinkActive(link.href)
                     ? 'text-accent1 bg-accent1/5'
                     : 'text-text-muted hover:text-text-dark hover:bg-gray-50'
                 }`}
+                onClick={() => {
+                  if (link.href.includes('#')) {
+                    setActiveHash('#' + link.href.split('#')[1]);
+                  } else {
+                    setActiveHash('');
+                  }
+                }}
               >
                 {link.label}
-                {pathname === link.href && (
+                {isLinkActive(link.href) && (
                   <motion.div
                     className="absolute bottom-0 left-3 right-3 h-0.5 rounded-full bg-accent1"
                     layoutId="activeNav"
@@ -172,10 +194,17 @@ export function Navbar() {
                       href={link.href}
                       className={`block px-4 py-3.5 rounded-xl text-base font-medium
                                  transition-all duration-200 ${
-                        pathname === link.href
+                        isLinkActive(link.href)
                           ? 'text-accent1 bg-accent1/8 font-semibold'
                           : 'text-text-dark hover:bg-gray-50 hover:text-accent1'
                       }`}
+                      onClick={() => {
+                        if (link.href.includes('#')) {
+                          setActiveHash('#' + link.href.split('#')[1]);
+                        } else {
+                          setActiveHash('');
+                        }
+                      }}
                     >
                       {link.label}
                     </Link>

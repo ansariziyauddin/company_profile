@@ -53,6 +53,13 @@ export const mobileProjects = [
     description: "A comprehensive solution for tracking assets and managing stock efficiently.",
     tags: ["Asset Management", "Inventory Tracking", "Business Utility"],
     image: "/images/projects/inventory_management.jpg",
+    screenshots: [
+      "/images/projects/im_01.png",
+      "/images/projects/im_02.png",
+      "/images/projects/im_03.png",
+      "/images/projects/im_04.png",
+      "/images/projects/im_05.png"
+    ],
     type: "mobile"
   },
   {
@@ -61,6 +68,14 @@ export const mobileProjects = [
     description: "A mobile application designed to connect users and foster community engagement.",
     tags: ["Community App", "Social Network", "Mobile Platform"],
     image: "/images/projects/magical_community.jpg",
+    playStoreLink: "https://play.google.com/store/apps/details?id=com.mindmesh.magicalcommunity&hl=en_IN",
+    appStoreLink: "https://apps.apple.com/in/app/magicalcommunity/id6749794462",
+    screenshots: [
+      "/images/projects/mc_01.png",
+      "/images/projects/mc_02.png",
+      "/images/projects/mc_03.png",
+      "/images/projects/mc_04.png"
+    ],
     type: "mobile"
   },
   {
@@ -69,6 +84,13 @@ export const mobileProjects = [
     description: "A secure and reliable personal vault app for sensitive data and operations.",
     tags: ["Data Privacy", "Digital Security", "Personal Vault"],
     image: "/images/projects/secureVault.jpg",
+    screenshots: [
+      "/images/projects/sv_01.png",
+      "/images/projects/sv_02.png",
+      "/images/projects/sv_03.jfif",
+      "/images/projects/sv_04.png",
+      "/images/projects/sv_05.png"
+    ],
     type: "mobile"
   },
   {
@@ -77,6 +99,12 @@ export const mobileProjects = [
     description: "A residential society management platform for easier administration and communication.",
     tags: ["Residential Admin", "Society Management", "Communication Portal"],
     image: "/images/projects/soceity_managemet.jpg",
+    screenshots: [
+      "/images/projects/sm_01.png",
+      "/images/projects/sm_02.png",
+      "/images/projects/sm_03.png",
+      "/images/projects/sm_04.png"
+    ],
     type: "mobile"
   }
 ];

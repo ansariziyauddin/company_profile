@@ -5,10 +5,10 @@ import { MessageCircle, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
 
 const CONTACTS = [
   {
-    href: 'https://wa.me/919876543210',
+    href: 'https://wa.me/919998434340',
     icon: MessageCircle,
     label: 'Chat with us',
-    detail: '+91 98765 43210',
+    detail: '+91 9998434340',
     description: 'Quick questions? We respond fast on WhatsApp.',
     accentColor: 'from-green-500/10 to-emerald-500/10',
     iconBg: 'bg-green-500/10',
@@ -16,10 +16,10 @@ const CONTACTS = [
     hoverBorder: 'hover:border-green-500/30',
   },
   {
-    href: 'https://www.linkedin.com/company/inovance-technologies',
+    href: 'https://www.linkedin.com/in/ziyauddin-ansari-6aa65751',
     icon: Linkedin,
     label: 'Connect professionally',
-    detail: 'LinkedIn',
+    detail: 'Ziyauddin Ansari',
     description: 'Follow our journey and connect for opportunities.',
     accentColor: 'from-blue-500/10 to-sky-500/10',
     iconBg: 'bg-blue-500/10',
@@ -27,10 +27,10 @@ const CONTACTS = [
     hoverBorder: 'hover:border-blue-500/30',
   },
   {
-    href: 'mailto:hello@inovancetech.com',
+    href: 'mailto:ansariziyauddin.n@gmail.com',
     icon: Mail,
-    label: 'Drop us a line',
-    detail: 'hello@inovancetech.com',
+    label: 'Drop an email',
+    detail: 'ansariziyauddin.n@gmail.com',
     description: 'Detailed inquiries and project discussions.',
     accentColor: 'from-accent1/10 to-accent3/10',
     iconBg: 'bg-accent1/10',

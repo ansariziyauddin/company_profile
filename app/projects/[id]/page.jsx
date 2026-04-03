@@ -38,45 +38,97 @@ export default function ProjectPage({ params }) {
           <span className="font-medium">Back to Projects</span>
         </Link>
         
-        {/* Project Header */}
-        <div className="mb-14">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-text-dark mb-6 tracking-tight drop-shadow-sm">
-            {project.title}
-          </h1>
-          <div className="flex flex-wrap gap-3 mb-8">
-            {project.tags.map(tag => (
-              <Badge key={tag} variant="default" className="text-sm px-3 py-1 bg-accent1/10 text-accent1 border-none">{tag}</Badge>
-            ))}
+        <div className={`mt-6 flex flex-col ${project.type === 'web' ? 'lg:flex-row lg:gap-16 lg:items-start' : ''}`}>
+          {/* Project Header */}
+          <div className={`${project.type === 'web' ? 'lg:w-5/12 mb-10 lg:mb-0' : 'mb-14'}`}>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-text-dark mb-6 tracking-tight drop-shadow-sm">
+              {project.title}
+            </h1>
+            <div className="flex flex-wrap gap-3 mb-8">
+              {project.tags.map(tag => (
+                <Badge key={tag} variant="default" className="text-sm px-3 py-1 bg-accent1/10 text-accent1 border-none">{tag}</Badge>
+              ))}
+            </div>
+            <p className="text-xl md:text-2xl text-text-muted max-w-4xl leading-relaxed font-light">
+              {project.description}
+            </p>
+            
+            <div className="flex flex-wrap gap-4 mt-8">
+              {project.link && (
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent1 to-accent2 text-white font-semibold rounded-xl hover:shadow-accent-lg transition-all transform hover:-translate-y-1"
+                >
+                  <ExternalLink size={18} />
+                  Visit Live Project
+                </a>
+              )}
+              
+              {project.playStoreLink && (
+                <a 
+                  href={project.playStoreLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-4 bg-[#0D0F1A] border-2 border-[#0D0F1A] text-white font-semibold rounded-xl hover:bg-transparent hover:text-[#0D0F1A] hover:shadow-lg transition-all transform hover:-translate-y-1"
+                >
+                  <ExternalLink size={18} />
+                  Get on Google Play
+                </a>
+              )}
+              
+              {project.appStoreLink && (
+                <a 
+                  href={project.appStoreLink} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-4 bg-[#0D0F1A] border-2 border-[#0D0F1A] text-white font-semibold rounded-xl hover:bg-transparent hover:text-[#0D0F1A] hover:shadow-lg transition-all transform hover:-translate-y-1"
+                >
+                  <ExternalLink size={18} />
+                  Download on App Store
+                </a>
+              )}
+            </div>
           </div>
-          <p className="text-xl md:text-2xl text-text-muted max-w-4xl leading-relaxed font-light">
-            {project.description}
-          </p>
           
-          {project.link && (
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 mt-8 px-8 py-4 bg-gradient-to-r from-accent1 to-accent2 text-white font-semibold rounded-xl hover:shadow-accent-lg transition-all transform hover:-translate-y-1"
-            >
-              <ExternalLink size={18} />
-              Visit Live Project
-            </a>
-          )}
-        </div>
-        
-        {/* Project Image */}
-        <div className={`relative w-full rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-100/50 flex items-center justify-center p-4 md:p-12
-                         ${project.type === 'mobile' ? 'aspect-[4/3] md:aspect-video bg-gray-100' : 'aspect-video md:aspect-[21/9]'}`}>
-          <div className={`relative w-full h-full ${project.type === 'mobile' ? 'max-w-sm mx-auto' : ''}`}>
-             <Image 
-              src={project.image} 
-              alt={project.title}
-              fill
-              className={`object-contain drop-shadow-xl ${project.type === 'mobile' ? 'scale-105' : ''}`}
-              sizes="(max-width: 1200px) 100vw, 1200px"
-              priority
-            />
+          <div className={`${project.type === 'web' ? 'lg:w-7/12 flex justify-center lg:justify-end' : 'w-full mt-4'}`}>
+            {project.type === 'mobile' ? (
+              <div className="w-full">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pb-12 pt-4 px-4 md:px-0">
+                  {(project.screenshots || [project.image]).map((src, index) => (
+                    <div 
+                      key={index}
+                      className="flex justify-center items-center w-full"
+                    >
+                      <div className="relative w-[75%] rounded-2xl overflow-hidden">
+                        <Image 
+                          src={src} 
+                          alt={`${project.title} screen ${index + 1}`}
+                          width={1000}
+                          height={1000}
+                          className="w-full h-auto object-contain"
+                          sizes="(max-width: 768px) 75vw, 35vw"
+                          priority={index < 2}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <div className="w-full flex justify-center">
+                <Image 
+                  src={project.image} 
+                  alt={project.title}
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto rounded-xl shadow-2xl border border-gray-100/50"
+                  sizes="(max-width: 1024px) 100vw, 1000px"
+                  priority
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>

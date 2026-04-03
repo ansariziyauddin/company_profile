@@ -13,7 +13,7 @@ export function Hero() {
       <div className="container-main relative z-10 py-24">
         <div className="flex flex-col items-center text-center">
           {/* Badge */}
-          <motion.div
+          {/* <motion.div
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full
                        bg-white/5 text-white/70 text-sm font-medium mb-8"
             initial={{ opacity: 0, y: 20 }}
@@ -22,7 +22,7 @@ export function Hero() {
           >
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             14+ Years of Engineering Excellence
-          </motion.div>
+          </motion.div> */}
 
           {/* Headline */}
           <motion.h1
