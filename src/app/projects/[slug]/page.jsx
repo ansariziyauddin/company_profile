@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/config/site';
 
 export async function generateStaticParams() {
@@ -23,9 +24,17 @@ export async function generateMetadata({ params }) {
     description: project.description,
     alternates: { canonical: `${siteConfig.url}/projects/${project.id}` },
     openGraph: {
-      title: project.title,
+      title: `${project.title} | ${siteConfig.name}`,
       description: project.description,
+      url: `${siteConfig.url}/projects/${project.id}`,
+      siteName: siteConfig.name,
       images: [{ url: project.image, alt: project.title }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.title} | ${siteConfig.name}`,
+      description: project.description,
+      images: [project.image],
     },
   };
 }
@@ -40,8 +49,56 @@ export default function ProjectPage({ params }) {
   const isWeb = project.type === 'web';
   const isMobile = project.type === 'mobile';
 
+  const projectUrl = `${siteConfig.url}/projects/${project.id}`;
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: siteConfig.url,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Projects',
+        item: `${siteConfig.url}/projects`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: project.title,
+        item: projectUrl,
+      },
+    ],
+  };
+
+  const projectSchema = {
+    '@context': 'https://schema.org',
+    '@type': isWeb ? 'WebSite' : 'SoftwareApplication',
+    name: project.title,
+    description: project.description,
+    url: projectUrl,
+    image: `${siteConfig.url}${project.image}`,
+    author: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    ...(isMobile && {
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'iOS, Android',
+    }),
+  };
+
   return (
     <div className="pt-32 pb-16 min-h-screen bg-gray-50/30">
+      <JsonLd data={breadcrumbSchema} />
+      <JsonLd data={projectSchema} />
+
       <div className="container-main">
         {/* Breadcrumb / Back */}
         <Link

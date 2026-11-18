@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { webProjects, mobileProjects } from '@/data/projects';
 import { Badge } from '@/components/ui/Badge';
+import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/config/site';
 import { ArrowRight } from 'lucide-react';
 
@@ -10,11 +11,36 @@ export const metadata = {
   description:
     "Explore Innovance Tech AI's portfolio — web platforms, e-commerce systems, mobile apps, and scalable digital products built for startups and growing businesses.",
   alternates: { canonical: `${siteConfig.url}/projects` },
+  openGraph: {
+    title: `Our Projects | ${siteConfig.name}`,
+    description:
+      'Curated web platforms, e-commerce systems, and mobile applications built with scalable architectures.',
+    url: `${siteConfig.url}/projects`,
+  },
+};
+
+const collectionSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: `Projects | ${siteConfig.name}`,
+  url: `${siteConfig.url}/projects`,
+  description: metadata.description,
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [...webProjects, ...mobileProjects].map((project, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: `${siteConfig.url}/projects/${project.id}`,
+      name: project.title,
+    })),
+  },
 };
 
 export default function ProjectsPage() {
   return (
     <div className="pt-32 pb-24 min-h-screen">
+      <JsonLd data={collectionSchema} />
+
       <div className="container-main">
         {/* Page Header */}
         <div className="mb-16 text-center">

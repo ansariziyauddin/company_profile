@@ -1,5 +1,4 @@
-'use client';
-
+// Pure Server Component — no 'use client' needed
 import Link from 'next/link';
 
 export function Button({

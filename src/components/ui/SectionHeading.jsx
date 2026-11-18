@@ -1,6 +1,5 @@
-'use client';
-
-import { motion } from 'framer-motion';
+// Server Component shell — ScrollReveal handles animation client-side
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 export function SectionHeading({
   title,
@@ -15,13 +14,7 @@ export function SectionHeading({
   };
 
   return (
-    <motion.div
-      className={`max-w-3xl mb-16 ${alignments[align]} ${className}`}
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-100px' }}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-    >
+    <ScrollReveal className={`max-w-3xl mb-16 ${alignments[align]} ${className}`}>
       <h2
         className={`
           text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-5 text-balance
@@ -40,6 +33,6 @@ export function SectionHeading({
           {subtitle}
         </p>
       )}
-    </motion.div>
+    </ScrollReveal>
   );
 }

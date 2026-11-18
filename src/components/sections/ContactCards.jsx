@@ -1,14 +1,14 @@
-'use client';
-
-import { motion } from 'framer-motion';
+// Server Component — animation via ScrollReveal client wrapper
 import { MessageCircle, Linkedin, Mail, ArrowUpRight } from 'lucide-react';
+import { siteConfig } from '@/config/site';
+import { ScrollReveal } from '@/components/ui/ScrollReveal';
 
 const CONTACTS = [
   {
-    href: 'https://wa.me/919998434340',
-    icon: MessageCircle,
+    href: `https://wa.me/${siteConfig.contact.whatsapp}`,
+    Icon: MessageCircle,
     label: 'Chat with us',
-    detail: '+91 9998434340',
+    detail: siteConfig.contact.whatsappDisplay,
     description: 'Quick questions? We respond fast on WhatsApp.',
     accentColor: 'from-green-500/10 to-emerald-500/10',
     iconBg: 'bg-green-500/10',
@@ -16,8 +16,8 @@ const CONTACTS = [
     hoverBorder: 'hover:border-green-500/30',
   },
   {
-    href: 'https://www.linkedin.com/in/ziyauddin-ansari-6aa65751',
-    icon: Linkedin,
+    href: siteConfig.social.linkedinPersonal,
+    Icon: Linkedin,
     label: 'Connect professionally',
     detail: 'Ziyauddin Ansari',
     description: 'Follow our journey and connect for opportunities.',
@@ -27,10 +27,10 @@ const CONTACTS = [
     hoverBorder: 'hover:border-blue-500/30',
   },
   {
-    href: 'mailto:ansariziyauddin.n@gmail.com',
-    icon: Mail,
+    href: `mailto:${siteConfig.contact.email}`,
+    Icon: Mail,
     label: 'Drop an email',
-    detail: 'ansariziyauddin.n@gmail.com',
+    detail: siteConfig.contact.email,
     description: 'Detailed inquiries and project discussions.',
     accentColor: 'from-accent1/10 to-accent3/10',
     iconBg: 'bg-accent1/10',
@@ -43,18 +43,9 @@ export function ContactCards() {
   return (
     <section className="section-padding">
       <div className="container-main">
-        <motion.div
-          className="grid grid-cols-1 md:grid-cols-3 gap-6"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.12 } },
-          }}
-        >
+        <ScrollReveal stagger className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {CONTACTS.map((contact) => (
-            <motion.a
+            <a
               key={contact.href}
               href={contact.href}
               target="_blank"
@@ -64,20 +55,17 @@ export function ContactCards() {
                          hover:shadow-card-hover hover:-translate-y-2
                          ${contact.hoverBorder}
                          transition-all duration-500 block`}
-              variants={{
-                hidden: { opacity: 0, y: 30 },
-                visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-              }}
             >
               {/* Hover gradient */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${contact.accentColor}
-                              opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+              <div
+                className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${contact.accentColor}
+                            opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
+              />
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-5">
-                  <div className={`w-13 h-13 p-3 rounded-xl ${contact.iconBg} ${contact.iconColor}
-                                 transition-colors duration-300`}>
-                    <contact.icon size={24} />
+                  <div className={`p-3 rounded-xl ${contact.iconBg} ${contact.iconColor} transition-colors duration-300`}>
+                    <contact.Icon size={24} />
                   </div>
                   <ArrowUpRight
                     size={18}
@@ -90,16 +78,12 @@ export function ContactCards() {
                 <h3 className="text-lg font-semibold text-text-dark mb-1">
                   {contact.label}
                 </h3>
-                <p className="text-accent1 font-medium text-sm mb-3">
-                  {contact.detail}
-                </p>
-                <p className="text-text-muted text-sm leading-relaxed">
-                  {contact.description}
-                </p>
+                <p className="text-accent1 font-medium text-sm mb-3">{contact.detail}</p>
+                <p className="text-text-muted text-sm leading-relaxed">{contact.description}</p>
               </div>
-            </motion.a>
+            </a>
           ))}
-        </motion.div>
+        </ScrollReveal>
       </div>
     </section>
   );

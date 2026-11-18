@@ -1,5 +1,4 @@
-'use client';
-
+// Pure Server Component — no 'use client' needed
 export function Badge({ children, variant = 'default', className = '' }) {
   const variants = {
     default: 'bg-accent3/15 text-accent2 border-accent3/20',
