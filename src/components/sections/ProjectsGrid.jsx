@@ -15,6 +15,8 @@ export function ProjectsGrid() {
     <section id="projects" className="pb-20 pt-8 md:pb-32 md:pt-12">
       <div className="container-main">
         <SectionHeading
+          title="Our Projects"
+          subtitle="A curated collection of digital products we've designed, built, and shipped — from responsive web platforms to native mobile applications."
           title="Featured Systems & Case Studies"
           subtitle="A proven track record of engineering scalable digital architectures — solving complex business challenges with measurable impact across web, mobile, and distributed cloud systems."
         />
@@ -23,6 +25,7 @@ export function ProjectsGrid() {
         <div className="flex justify-center mb-12">
           <div
             role="tablist"
+            aria-label="Project categories"
             aria-label="System architectures"
             className="inline-flex bg-gray-100/60 p-1.5 rounded-2xl shadow-inner border border-gray-200/50"
           >
@@ -38,6 +41,7 @@ export function ProjectsGrid() {
                   : 'text-text-muted hover:text-text-dark'
               }`}
             >
+              Web
               Web Platforms ({webProjects.length})
             </button>
             <button
@@ -52,6 +56,7 @@ export function ProjectsGrid() {
                   : 'text-text-muted hover:text-text-dark'
               }`}
             >
+              Mobile
               Mobile Systems ({mobileProjects.length})
             </button>
           </div>
@@ -78,6 +83,7 @@ export function ProjectsGrid() {
           aria-labelledby="tab-mobile"
           className={activeTab === 'mobile' ? 'mb-10 block' : 'mb-10 hidden'}
         >
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 justify-items-center">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 justify-items-center">
             {mobileProjects.map((project, i) => (
               <MobileCard key={project.id} project={project} index={i} />
@@ -86,13 +92,18 @@ export function ProjectsGrid() {
         </div>
 
         {/* View All Projects CTA */}
+        <div className="text-center mt-12">
         <div className="text-center mt-14">
           <Link
             href="/projects"
+            className="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl text-sm font-semibold
             className="inline-flex items-center gap-2 px-8 py-4 rounded-xl text-sm font-semibold
                        bg-white text-text-dark hover:text-accent1 shadow-sm border border-gray-200/60
+                       hover:border-accent1/30 hover:shadow-md transition-all duration-300"
                        hover:border-accent1/30 hover:shadow-md transition-all duration-300 group"
           >
+            <span>Browse Complete Portfolio</span>
+            <ArrowRight size={16} />
             <span>View All Engineering Case Studies</span>
             <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
           </Link>

@@ -1,13 +1,18 @@
+/** @type {import('./src/types/project').WebProject[]} */
 /** @type {import('../types/project').WebProject[]} */
 export const webProjects = [
   {
     id: 'fashion-world',
+    title: 'Fashion World',
     title: 'Omnichannel Digital Commerce Engine',
     industry: 'Retail & E-Commerce',
     clientType: 'Enterprise Fashion & Apparel Brand',
     summary:
       'A high-performance headless digital commerce platform engineered for sub-second catalog navigation, high-traffic promotional bursts, and automated checkout resilience.',
     description:
+      'A modern e-commerce fashion platform with elegant product browsing, cart management, and seamless checkout flow.',
+    tags: ['E-Commerce', 'Online Shopping', 'UI/UX Design'],
+    link: 'https://grace-adorn-shop.onrender.com/',
       'A high-performance headless digital commerce platform engineered for sub-second catalog navigation, high-traffic promotional bursts, and automated checkout resilience.',
     challenge:
       'The client suffered from frequent checkout bottlenecks, sluggish product filtering across 10,000+ SKUs, and cart abandonment during seasonal promotional peaks.',
@@ -25,12 +30,16 @@ export const webProjects = [
   },
   {
     id: 'social-service',
+    title: 'Social Service',
     title: 'Disaster Relief & Volunteer Dispatch Network',
     industry: 'Social Infrastructure & Non-Profit',
     clientType: 'Civic Impact & Volunteer Organization',
     summary:
       'A distributed field coordination platform matching thousands of emergency volunteers, aid workers, and resource donors with real-time incident dispatching.',
     description:
+      'A platform connecting individuals with volunteers and organizations to support community needs and create positive social impact.',
+    tags: ['Social Platform', 'Community Service', 'Volunteer Network'],
+    link: 'https://khidmat-frontend-backend.onrender.com/',
       'A distributed field coordination platform matching thousands of emergency volunteers, aid workers, and resource donors with real-time incident dispatching.',
     challenge:
       'Emergency relief dispatches relied on fragmented manual spreadsheets and unindexed chat groups, causing delayed relief distribution and duplicate volunteer assignments.',
@@ -48,12 +57,16 @@ export const webProjects = [
   },
   {
     id: 'ecommerce-platform',
+    title: 'E-Commerce Platform',
     title: 'Multi-Tenant Commercial Logistics Hub',
     industry: 'Enterprise SaaS & B2B Distribution',
     clientType: 'B2B Wholesale & Supply Distributor',
     summary:
       'A scalable multi-tenant commerce administration system featuring real-time financial reconciliation, vendor catalog orchestration, and automated fulfillment pipelines.',
     description:
+      'A scalable multi-product e-commerce system with admin dashboard and order management.',
+    tags: ['E-Commerce', 'Admin Dashboard', 'Order Management'],
+    link: 'https://e-commerce-plhj.onrender.com/',
       'A scalable multi-tenant commerce administration system featuring real-time financial reconciliation, vendor catalog orchestration, and automated fulfillment pipelines.',
     challenge:
       'Disparate legacy ERP software across multiple distribution warehouses caused inventory sync delays of up to 4 hours and repetitive invoicing errors.',
@@ -70,13 +83,27 @@ export const webProjects = [
     type: 'web',
   },
   {
+    id: 'portfolio-todo-manager',
+    title: 'Portfolio + Todo Manager',
+    description:
+      'A combined personal portfolio and productivity app showcasing seamless UX with integrated task management.',
+    tags: ['Portfolio', 'Productivity Tool', 'Task Management'],
+    link: 'https://portfolio-todo-combo-mi4g.onrender.com/#/',
+    image: '/images/projects/web_portfolio_todo.webp',
+    type: 'web',
+  },
+  {
     id: 'magical-community',
+    title: 'Magical Community',
     title: 'High-Concurrency Digital Community Hub',
     industry: 'Media & Professional Networks',
     clientType: 'Knowledge Exchange & Member Network',
     summary:
       'A high-concurrency community platform supporting interactive forum spaces, real-time messaging, user mentorship matching, and structured resource indexing.',
     description:
+      'A community platform to bring people together, fostering active engagement and smooth communications.',
+    tags: ['Community Platform', 'Forum', 'Social Engagement'],
+    link: 'https://www.magicalcommunity.in/',
       'A high-concurrency community platform supporting interactive forum spaces, real-time messaging, user mentorship matching, and structured resource indexing.',
     challenge:
       'User engagement was dropping on legacy forum software that lacked real-time feedback loops, thread indexing, and modern mobile responsiveness.',
@@ -94,10 +121,14 @@ export const webProjects = [
   },
 ];
 
+/** @type {import('./src/types/project').MobileProject[]} */
 /** @type {import('../types/project').MobileProject[]} */
 export const mobileProjects = [
   {
     id: 'inventory-management',
+    title: 'Inventory Management',
+    description: 'A comprehensive solution for tracking assets and managing stock efficiently.',
+    tags: ['Asset Management', 'Inventory Tracking', 'Business Utility'],
     title: 'Automated Warehouse Asset & Logistics Suite',
     industry: 'Supply Chain & Manufacturing',
     clientType: 'Regional Distribution Enterprise',
@@ -128,6 +159,9 @@ export const mobileProjects = [
   },
   {
     id: 'magical-community-app',
+    title: 'Magical Community',
+    description: 'A mobile application designed to connect users and foster community engagement.',
+    tags: ['Community App', 'Social Network', 'Mobile Platform'],
     title: 'Member Experience & Real-Time Engagement App',
     industry: 'Social Communities & Member Organizations',
     clientType: 'Professional Association',
@@ -147,6 +181,9 @@ export const mobileProjects = [
     techStack: ['Flutter', 'iOS & Android SDKs', 'Firebase Cloud Messaging', 'Node.js'],
     tags: ['Mobile Application', 'Event Streaming', 'Push Notifications'],
     image: '/images/projects/magical_community.webp',
+    playStoreLink:
+      'https://play.google.com/store/apps/details?id=com.mindmesh.magicalcommunity&hl=en_IN',
+    appStoreLink: 'https://apps.apple.com/in/app/magicalcommunity/id6749794462',
     screenshots: [
       '/images/projects/mc_01.webp',
       '/images/projects/mc_02.webp',
@@ -157,6 +194,9 @@ export const mobileProjects = [
   },
   {
     id: 'secure-vault',
+    title: 'Secure Vault',
+    description: 'A secure and reliable personal vault app for sensitive data and operations.',
+    tags: ['Data Privacy', 'Digital Security', 'Personal Vault'],
     title: 'Zero-Knowledge Enterprise Credential Vault',
     industry: 'Cybersecurity & FinTech',
     clientType: 'Executive Security & Data Governance',
@@ -187,12 +227,15 @@ export const mobileProjects = [
   },
   {
     id: 'society-management',
+    title: 'Society Management',
     title: 'Smart Facility & Resident Operations System',
     industry: 'Real Estate & Facility Management',
     clientType: 'Property Management & Residential Communities',
     summary:
       'An integrated residential administrative platform unifying visitor verification, digital service ticketing, accounting notices, and security gatehouse logs.',
     description:
+      'A residential society management platform for easier administration and communication.',
+    tags: ['Residential Admin', 'Society Management', 'Communication Portal'],
       'An integrated residential administrative platform unifying visitor verification, digital service ticketing, accounting notices, and security gatehouse logs.',
     challenge:
       'Complex manual logbooks and fragmented chat communications led to security oversights and tenant billing disputes.',

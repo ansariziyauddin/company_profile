@@ -21,6 +21,7 @@ const nextConfig = {
       { source: '/projects/1', destination: '/projects/fashion-world', permanent: true },
       { source: '/projects/2', destination: '/projects/social-service', permanent: true },
       { source: '/projects/3', destination: '/projects/ecommerce-platform', permanent: true },
+      { source: '/projects/4', destination: '/projects/portfolio-todo-manager', permanent: true },
       { source: '/projects/4', destination: '/projects', permanent: true },
       { source: '/projects/portfolio-todo-manager', destination: '/projects', permanent: true },
       { source: '/projects/5', destination: '/projects/magical-community', permanent: true },

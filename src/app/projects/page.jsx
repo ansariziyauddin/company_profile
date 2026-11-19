@@ -1,19 +1,25 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import Link from 'next/link';
 import { webProjects, mobileProjects } from '@/data/projects';
 import { Badge } from '@/components/ui/Badge';
 import { JsonLd } from '@/components/seo/JsonLd';
 import { siteConfig } from '@/config/site';
+import { ArrowRight } from 'lucide-react';
 import { ArrowRight, CheckCircle2, ShieldCheck, Mail } from 'lucide-react';
 
 export const metadata = {
+  title: 'Projects',
   title: 'Engineering Case Studies',
   description:
+    "Explore Innovance Tech AI's portfolio — web platforms, e-commerce systems, mobile apps, and scalable digital products built for startups and growing businesses.",
     'Explore Innovance Tech AI’s portfolio of enterprise case studies — scalable web architectures, resilient mobile systems, and mission-critical digital platforms.',
   alternates: { canonical: `${siteConfig.url}/projects` },
   openGraph: {
+    title: `Our Projects | ${siteConfig.name}`,
     title: `Case Studies & Systems | ${siteConfig.name}`,
     description:
+      'Curated web platforms, e-commerce systems, and mobile applications built with scalable architectures.',
       'Explore our engineering case studies — scalable web architectures, resilient mobile systems, and mission-critical digital platforms.',
     url: `${siteConfig.url}/projects`,
   },
@@ -22,6 +28,7 @@ export const metadata = {
 const collectionSchema = {
   '@context': 'https://schema.org',
   '@type': 'CollectionPage',
+  name: `Projects | ${siteConfig.name}`,
   name: `Case Studies | ${siteConfig.name}`,
   url: `${siteConfig.url}/projects`,
   description: metadata.description,
@@ -38,11 +45,15 @@ const collectionSchema = {
 
 export default function ProjectsPage() {
   return (
+    <div className="pt-32 pb-24 min-h-screen">
     <div className="pt-32 pb-24 min-h-screen bg-gray-50/30">
       <JsonLd data={collectionSchema} />
 
       <div className="container-main">
         {/* Page Header */}
+        <div className="mb-16 text-center">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-text-dark tracking-tight mb-4">
+            Our Projects
         <div className="mb-16 text-center max-w-3xl mx-auto">
           <span className="text-xs font-semibold uppercase tracking-wider text-accent1 px-3 py-1.5 rounded-full bg-accent1/10 mb-4 inline-block">
             Engineering Track Record
@@ -50,14 +61,21 @@ export default function ProjectsPage() {
           <h1 className="text-4xl md:text-5xl font-extrabold text-text-dark tracking-tight mb-4">
             Production Case Studies & Systems
           </h1>
+          <p className="text-lg text-text-muted max-w-2xl mx-auto leading-relaxed">
+            A curated collection of digital products we&apos;ve designed, built, and shipped — from
+            responsive web platforms to native mobile applications.
           <p className="text-base md:text-lg text-text-muted leading-relaxed">
             A curated portfolio of high-throughput web platforms, zero-trust mobile solutions, and
             distributed systems built for growing startups and established enterprises.
           </p>
         </div>
 
+        {/* Web Projects */}
         {/* Web Case Studies */}
         <section aria-labelledby="web-heading" className="mb-20">
+          <h2 id="web-heading" className="text-2xl font-bold text-text-dark mb-8 pb-3 border-b border-gray-200">
+            Web Applications
+          </h2>
           <div className="flex items-center justify-between pb-4 border-b border-gray-200 mb-8">
             <h2 id="web-heading" className="text-2xl font-bold text-text-dark">
               Web & Cloud Platforms
@@ -70,17 +88,28 @@ export default function ProjectsPage() {
               <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
+                className="group relative rounded-2xl overflow-hidden bg-white/70 backdrop-blur-sm
+                           border border-white/50 shadow-card hover:shadow-card-hover hover:-translate-y-2
+                           transition-all duration-500 ease-out flex flex-col h-full"
                 className="group relative rounded-2xl overflow-hidden bg-white shadow-card hover:shadow-card-hover
                            hover:-translate-y-2 transition-all duration-500 ease-out border border-gray-100 flex flex-col h-full"
               >
+                <div className="relative h-52 md:h-56 overflow-hidden shrink-0">
                 <div className="relative h-56 md:h-60 overflow-hidden bg-gray-100 shrink-0">
                   <Image
                     src={project.image}
                     alt={`${project.title} preview`}
                     fill
                     sizes="(max-width: 768px) 100vw, 50vw"
+                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
                     className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-105"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-base/60 via-base/10 to-transparent
+                                  opacity-0 group-hover:opacity-100 transition-opacity duration-500
+                                  flex items-end justify-center pb-4">
+                    <span className="text-white text-sm font-medium flex items-center gap-1.5
+                                     backdrop-blur-sm bg-white/10 px-4 py-2 rounded-full">
+                      View Details
                   <div className="absolute inset-0 bg-gradient-to-t from-base/70 via-base/20 to-transparent
                                   opacity-0 group-hover:opacity-100 transition-opacity duration-400
                                   flex items-end justify-between p-6">
@@ -92,6 +121,8 @@ export default function ProjectsPage() {
                     </span>
                   </div>
                 </div>
+                <div className="p-6 flex flex-col flex-grow">
+                  <h3 className="text-lg font-bold text-text-dark mb-2 group-hover:text-accent1 transition-colors">
 
                 <div className="p-7 flex flex-col flex-grow">
                   <div className="flex items-center justify-between mb-3 text-xs">
@@ -102,10 +133,15 @@ export default function ProjectsPage() {
                   <h3 className="text-xl font-bold text-text-dark mb-3 group-hover:text-accent1 transition-colors leading-snug">
                     {project.title}
                   </h3>
+                  <p className="text-text-muted text-sm leading-relaxed mb-4 line-clamp-2">
+                    {project.description}
 
                   <p className="text-text-muted text-sm leading-relaxed mb-5 line-clamp-2">
                     {project.summary || project.description}
                   </p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag}>{tag}</Badge>
 
                   {/* Top Metric */}
                   {project.metrics && project.metrics.length > 0 && (
@@ -122,6 +158,8 @@ export default function ProjectsPage() {
                       </Badge>
                     ))}
                   </div>
+                  <div className="mt-auto inline-flex items-center gap-1.5 text-sm font-semibold text-text-dark group-hover:text-accent1 transition-colors">
+                    View Details <ArrowRight size={14} />
 
                   <div className="mt-auto pt-4 border-t border-gray-100 flex items-center text-sm font-semibold text-accent1 group-hover:text-accent2 transition-colors">
                     <span>Explore Full Case Study</span>
@@ -133,6 +171,12 @@ export default function ProjectsPage() {
           </div>
         </section>
 
+        {/* Mobile Projects */}
+        <section aria-labelledby="mobile-heading">
+          <h2 id="mobile-heading" className="text-2xl font-bold text-text-dark mb-8 pb-3 border-b border-gray-200">
+            Mobile Applications
+          </h2>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 md:gap-10 justify-items-center">
         {/* Mobile Case Studies */}
         <section aria-labelledby="mobile-heading" className="mb-20">
           <div className="flex items-center justify-between pb-4 border-b border-gray-200 mb-8">
@@ -147,8 +191,27 @@ export default function ProjectsPage() {
               <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
+                className="group flex flex-col items-center"
                 className="group rounded-2xl bg-white p-6 shadow-card hover:shadow-card-hover border border-gray-100 flex flex-col justify-between transition-all duration-300 hover:-translate-y-1.5"
               >
+                <div className="relative block w-44 h-80 md:w-48 md:h-[22rem] rounded-[2rem] overflow-hidden
+                                bg-white shadow-card border-[6px] border-white/80
+                                group-hover:shadow-card-hover group-hover:-translate-y-3
+                                transition-all duration-500 ease-out">
+                  <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 bg-white rounded-b-xl z-10" />
+                  <Image
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    fill
+                    sizes="200px"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-base/60 to-transparent
+                                  opacity-0 group-hover:opacity-100 transition-opacity duration-400
+                                  flex items-end justify-center pb-6">
+                    <span className="text-white text-xs font-medium backdrop-blur-sm bg-black/20 px-3 py-1.5 rounded-full">
+                      View Details
+                    </span>
                 <div>
                   <div className="relative w-full aspect-[9/14] rounded-2xl overflow-hidden bg-gray-100 mb-5 border-2 border-gray-100">
                     <Image
@@ -159,15 +222,25 @@ export default function ProjectsPage() {
                       sizes="(max-width: 768px) 100vw, 25vw"
                     />
                   </div>
+                </div>
+                <div className="mt-5 text-center max-w-[200px]">
+                  <h3 className="text-base font-bold text-text-dark mb-1.5 group-hover:text-accent1 transition-colors">
                   <span className="text-[11px] font-semibold uppercase tracking-wider text-accent1 block mb-1.5">
                     {project.industry}
                   </span>
                   <h3 className="text-base font-bold text-text-dark mb-2 group-hover:text-accent1 transition-colors leading-snug">
                     {project.title}
                   </h3>
+                  <p className="text-text-muted text-xs leading-relaxed mb-3 line-clamp-2">
+                    {project.description}
                   <p className="text-xs text-text-muted line-clamp-2 leading-relaxed mb-4">
                     {project.summary || project.description}
                   </p>
+                  <div className="flex flex-wrap justify-center gap-1.5">
+                    {project.tags.map((tag) => (
+                      <Badge key={tag} variant="muted">{tag}</Badge>
+                    ))}
+                  </div>
                 </div>
 
                 <div className="pt-3 border-t border-gray-100 flex items-center justify-between text-xs font-semibold text-accent1">

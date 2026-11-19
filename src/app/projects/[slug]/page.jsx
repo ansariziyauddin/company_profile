@@ -2,6 +2,7 @@ import { webProjects, mobileProjects } from '@/data/projects';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ArrowLeft, ExternalLink } from 'lucide-react';
 import { ArrowLeft, ArrowRight, CheckCircle2, ShieldCheck, Zap, Layers, Mail } from 'lucide-react';
 import { Badge } from '@/components/ui/Badge';
 import { JsonLd } from '@/components/seo/JsonLd';
@@ -17,13 +18,18 @@ export async function generateMetadata({ params }) {
   const project = [...webProjects, ...mobileProjects].find(
     (p) => p.id === params.slug
   );
+  if (!project) return { title: 'Project Not Found' };
   if (!project) return { title: 'Case Study Not Found' };
 
   return {
+    title: project.title,
+    description: project.description,
     title: `${project.title} — Case Study`,
     description: project.summary || project.description,
     alternates: { canonical: `${siteConfig.url}/projects/${project.id}` },
     openGraph: {
+      title: `${project.title} | ${siteConfig.name}`,
+      description: project.description,
       title: `${project.title} | ${siteConfig.name} Case Study`,
       description: project.summary || project.description,
       url: `${siteConfig.url}/projects/${project.id}`,
@@ -33,6 +39,7 @@ export async function generateMetadata({ params }) {
     twitter: {
       card: 'summary_large_image',
       title: `${project.title} | ${siteConfig.name}`,
+      description: project.description,
       description: project.summary || project.description,
       images: [project.image],
     },
@@ -46,7 +53,9 @@ export default function ProjectPage({ params }) {
 
   if (!project) notFound();
 
+  const isWeb = project.type === 'web';
   const isMobile = project.type === 'mobile';
+
   const projectUrl = `${siteConfig.url}/projects/${project.id}`;
 
   const breadcrumbSchema = {
@@ -62,6 +71,7 @@ export default function ProjectPage({ params }) {
       {
         '@type': 'ListItem',
         position: 2,
+        name: 'Projects',
         name: 'Case Studies',
         item: `${siteConfig.url}/projects`,
       },
@@ -76,6 +86,9 @@ export default function ProjectPage({ params }) {
 
   const projectSchema = {
     '@context': 'https://schema.org',
+    '@type': isWeb ? 'WebSite' : 'SoftwareApplication',
+    name: project.title,
+    description: project.description,
     '@type': 'TechArticle',
     headline: project.title,
     description: project.summary || project.description,
@@ -86,14 +99,28 @@ export default function ProjectPage({ params }) {
       name: siteConfig.name,
       url: siteConfig.url,
     },
+    ...(isMobile && {
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'iOS, Android',
+    }),
   };
 
   return (
+    <div className="pt-32 pb-16 min-h-screen bg-gray-50/30">
     <div className="pt-32 pb-24 min-h-screen bg-gray-50/40">
       <JsonLd data={breadcrumbSchema} />
       <JsonLd data={projectSchema} />
 
       <div className="container-main">
+        {/* Breadcrumb / Back */}
+        <Link
+          href="/projects"
+          className="inline-flex items-center gap-2 text-text-muted hover:text-accent1 transition-colors mb-10
+                     px-4 py-2 rounded-lg hover:bg-white shadow-sm border border-transparent hover:border-gray-100"
+        >
+          <ArrowLeft size={16} />
+          <span className="font-medium">Back to Projects</span>
+        </Link>
         {/* Navigation / Breadcrumb */}
         <div className="flex items-center justify-between mb-8">
           <Link
@@ -109,6 +136,18 @@ export default function ProjectPage({ params }) {
           </span>
         </div>
 
+        <div className={`mt-6 flex flex-col ${isWeb ? 'lg:flex-row lg:gap-16 lg:items-start' : ''}`}>
+          {/* Header */}
+          <div className={`${isWeb ? 'lg:w-5/12 mb-10 lg:mb-0' : 'mb-14'}`}>
+            <h1 className="text-4xl md:text-6xl font-extrabold text-text-dark mb-6 tracking-tight drop-shadow-sm">
+              {project.title}
+            </h1>
+            <div className="flex flex-wrap gap-3 mb-8">
+              {project.tags.map((tag) => (
+                <Badge key={tag} variant="default" className="text-sm px-3 py-1 bg-accent1/10 text-accent1 border-none">
+                  {tag}
+                </Badge>
+              ))}
         {/* Hero Section */}
         <div className="mb-14">
           <div className="flex flex-wrap items-center gap-2 mb-4">
@@ -134,12 +173,51 @@ export default function ProjectPage({ params }) {
             <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center text-red-600 mb-5">
               <Zap size={22} />
             </div>
+            <p className="text-xl md:text-2xl text-text-muted max-w-4xl leading-relaxed font-light">
+              {project.description}
             <h2 className="text-lg font-bold text-text-dark mb-3">The Challenge</h2>
             <p className="text-sm text-text-muted leading-relaxed flex-grow">
               {project.challenge || 'Solving complex throughput limitations, security compliance, and user concurrency bottlenecks in high-demand environments.'}
             </p>
           </div>
 
+            <div className="flex flex-wrap gap-4 mt-8">
+              {isWeb && project.link && (
+                <a
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-accent1 to-accent2
+                             text-white font-semibold rounded-xl hover:shadow-accent-lg transition-all transform hover:-translate-y-1"
+                >
+                  <ExternalLink size={18} />
+                  Visit Live Project
+                </a>
+              )}
+              {isMobile && project.playStoreLink && (
+                <a
+                  href={project.playStoreLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-4 bg-[#0D0F1A] border-2 border-[#0D0F1A]
+                             text-white font-semibold rounded-xl hover:bg-transparent hover:text-[#0D0F1A] hover:shadow-lg transition-all transform hover:-translate-y-1"
+                >
+                  <ExternalLink size={18} />
+                  Get on Google Play
+                </a>
+              )}
+              {isMobile && project.appStoreLink && (
+                <a
+                  href={project.appStoreLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-6 py-4 bg-[#0D0F1A] border-2 border-[#0D0F1A]
+                             text-white font-semibold rounded-xl hover:bg-transparent hover:text-[#0D0F1A] hover:shadow-lg transition-all transform hover:-translate-y-1"
+                >
+                  <ExternalLink size={18} />
+                  Download on App Store
+                </a>
+              )}
           {/* 2. Architecture & Solution */}
           <div className="p-7 rounded-2xl bg-white shadow-card border border-gray-100 flex flex-col">
             <div className="w-12 h-12 rounded-xl bg-accent1/10 flex items-center justify-center text-accent1 mb-5">
@@ -151,6 +229,23 @@ export default function ProjectPage({ params }) {
             </p>
           </div>
 
+          {/* Media */}
+          <div className={`${isWeb ? 'lg:w-7/12 flex justify-center lg:justify-end' : 'w-full mt-4'}`}>
+            {isMobile ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 pb-12 pt-4 px-4 md:px-0">
+                {(project.screenshots || [project.image]).map((src, index) => (
+                  <div key={index} className="flex justify-center items-center w-full">
+                    <div className="relative w-[75%] rounded-2xl overflow-hidden">
+                      <Image
+                        src={src}
+                        alt={`${project.title} screen ${index + 1}`}
+                        width={800}
+                        height={1600}
+                        className="w-full h-auto object-contain"
+                        sizes="(max-width: 768px) 75vw, 35vw"
+                        priority={index < 2}
+                      />
+                    </div>
           {/* 3. Measurable Impact */}
           <div className="p-7 rounded-2xl bg-white shadow-card border border-gray-100 flex flex-col">
             <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-600 mb-5">
@@ -202,6 +297,21 @@ export default function ProjectPage({ params }) {
                       priority={index < 2}
                     />
                   </div>
+                ))}
+              </div>
+            ) : (
+              <div className="w-full flex justify-center">
+                <Image
+                  src={project.image}
+                  alt={`${project.title} — Preview`}
+                  width={1664}
+                  height={1080}
+                  className="w-full h-auto rounded-xl shadow-2xl border border-gray-100/50"
+                  sizes="(max-width: 1024px) 100vw, 1000px"
+                  priority
+                />
+              </div>
+            )}
                 </div>
               ))}
             </div>

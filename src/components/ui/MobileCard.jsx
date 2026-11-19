@@ -9,6 +9,7 @@ import { ArrowRight } from 'lucide-react';
 export function MobileCard({ project, index = 0 }) {
   return (
     <motion.div
+      className="group relative flex flex-col items-center"
       className="group relative flex flex-col items-center w-full max-w-[280px]"
       variants={{
         hidden: { opacity: 0, y: 40 },
@@ -22,6 +23,9 @@ export function MobileCard({ project, index = 0 }) {
       {/* Phone Frame */}
       <Link
         href={`/projects/${project.id}`}
+        className="relative block w-44 h-80 md:w-48 md:h-[22rem] rounded-[2rem] overflow-hidden
+                   bg-white shadow-card border-[6px] border-white/80
+                   group-hover:shadow-card-hover group-hover:-translate-y-3
         className="relative block w-52 h-[23rem] rounded-[2.2rem] overflow-hidden
                    bg-white shadow-card border-[7px] border-white/90
                    group-hover:shadow-card-hover group-hover:-translate-y-2.5
@@ -35,14 +39,22 @@ export function MobileCard({ project, index = 0 }) {
           src={project.image}
           alt={`${project.title} Preview`}
           fill
+          sizes="200px"
           sizes="220px"
           className="object-cover transition-transform duration-700 ease-out
+                     group-hover:scale-110"
                      group-hover:scale-105"
         />
 
         {/* Hover overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-base/60 to-transparent
         <div className="absolute inset-0 bg-gradient-to-t from-base/80 via-base/20 to-transparent
                         opacity-0 group-hover:opacity-100 transition-opacity duration-400
+                        flex items-end justify-center pb-6">
+            <span className="text-white text-xs font-medium flex items-center gap-1.5
+                           backdrop-blur-sm bg-black/20 px-3 py-1.5 rounded-full">
+              View Details
+            </span>
                         flex flex-col justify-end p-5 text-center items-center">
           <span className="text-white text-xs font-semibold px-3 py-1 rounded-full bg-white/20 backdrop-blur-md mb-2">
             {project.industry || 'Mobile Suite'}
@@ -54,16 +66,20 @@ export function MobileCard({ project, index = 0 }) {
       </Link>
 
       {/* Content below phone */}
+      <div className="mt-5 text-center max-w-[200px]">
       <div className="mt-5 text-center w-full px-2">
         <span className="text-[11px] font-semibold uppercase tracking-wider text-accent1 block mb-1">
           {project.industry || 'Mobile Case Study'}
         </span>
         <Link href={`/projects/${project.id}`}>
+          <h3 className="text-base font-bold text-text-dark mb-1.5
+                         group-hover:text-accent1 transition-colors duration-300">
           <h3 className="text-base font-bold text-text-dark mb-1.5 group-hover:text-accent1 transition-colors duration-300 line-clamp-1">
             {project.title}
           </h3>
         </Link>
         <p className="text-text-muted text-xs leading-relaxed mb-3 line-clamp-2">
+          {project.description}
           {project.summary || project.description}
         </p>
 
@@ -75,6 +91,8 @@ export function MobileCard({ project, index = 0 }) {
         )}
 
         <div className="flex flex-wrap justify-center gap-1.5">
+          {project.tags.map((tag) => (
+            <Badge key={tag} variant="muted">{tag}</Badge>
           {(project.tags || []).slice(0, 2).map((tag) => (
             <Badge key={tag} variant="muted" className="text-[10px] px-2 py-0.5">
               {tag}
